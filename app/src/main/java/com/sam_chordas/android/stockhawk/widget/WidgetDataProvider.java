@@ -131,26 +131,14 @@ public class WidgetDataProvider implements RemoteViewsService.RemoteViewsFactory
             data.close();
         }
 
-
-
         final long token = Binder.clearCallingIdentity();
-        data = mContext.getContentResolver().query(
-                QuoteProvider.Quotes.CONTENT_URI,
-                new String[] {
-                        QuoteColumns._ID,
-                        QuoteColumns.SYMBOL,
-                        QuoteColumns.PERCENT_CHANGE,
-                        QuoteColumns.CHANGE,
-                        QuoteColumns.BIDPRICE,
-                        QuoteColumns.CREATED,
-                        QuoteColumns.ISUP,
-                },
+        data = mContext.getContentResolver().query(QuoteProvider.Quotes.CONTENT_URI,
+                new String[]{QuoteColumns.SYMBOL, QuoteColumns.BIDPRICE,
+                        QuoteColumns.PERCENT_CHANGE, QuoteColumns.CHANGE, QuoteColumns.ISUP},
                 QuoteColumns.ISCURRENT + " = ?",
                 new String[]{"1"},
                 null);
         Binder.restoreCallingIdentity(token);
-
-
     }
 
 
