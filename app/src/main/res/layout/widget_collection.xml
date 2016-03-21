@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+                android:padding="@dimen/widget_margin">
+
+    <FrameLayout
+        android:id="@+id/widget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?android:attr/listPreferredItemHeightSmall"
+        android:background="@color/material_blue_500">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/widget_title"
+            android:textSize="@dimen/md_title_textsize"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:padding="10sp"
+            android:id="@+id/update"
+            android:layout_gravity="end"
+            android:drawableTop="@drawable/ic_update"
+            android:background="@color/material_blue_500"
+            />
+
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <ListView
+            android:id="@+id/widget_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/material_gray_600"
+            android:dividerHeight="1dp"
+            tools:listitem="@layout/widget_collection_item"/>
+        <TextView
+            android:id="@+id/empty_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="null"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:visibility="gone"/>
+    </FrameLayout>
+
+</LinearLayout>
