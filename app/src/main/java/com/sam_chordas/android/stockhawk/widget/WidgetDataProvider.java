@@ -132,7 +132,7 @@ public class WidgetDataProvider implements RemoteViewsService.RemoteViewsFactory
         }
 
 
-/*
+
         final long token = Binder.clearCallingIdentity();
         data = mContext.getContentResolver().query(
                 QuoteProvider.Quotes.CONTENT_URI,
@@ -150,14 +150,7 @@ public class WidgetDataProvider implements RemoteViewsService.RemoteViewsFactory
                 null);
         Binder.restoreCallingIdentity(token);
 
-*/final long token = Binder.clearCallingIdentity();
-        data = mContext.getContentResolver().query(QuoteProvider.Quotes.CONTENT_URI,
-                new String[]{QuoteColumns.SYMBOL, QuoteColumns.BIDPRICE,
-                        QuoteColumns.PERCENT_CHANGE, QuoteColumns.CHANGE, QuoteColumns.ISUP},
-                QuoteColumns.ISCURRENT + " = ?",
-                new String[]{"1"},
-                null);
-        Binder.restoreCallingIdentity(token);
+
     }
 
 
