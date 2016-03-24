@@ -88,7 +88,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                 // do something on item click
                   Intent intent=new Intent(mContext,LineChartActivity.class);
                   mCursor.moveToPosition(position);
-                  intent.putExtra("Symbol",mCursor.getString(mCursor.getColumnIndex("symbol")));
+                  intent.putExtra("symbol",mCursor.getString(mCursor.getColumnIndex("symbol")));
                   startActivity(intent);
 
               }
