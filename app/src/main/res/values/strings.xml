@@ -9,9 +9,6 @@
   <string name="content_test">Search for a Stock Symbol</string>
   <string name="input_hint">FB</string>
   <string name="input_prefill"></string>
-<<<<<<< HEAD
   <string name="widget_title">Today\'s Market</string>
-=======
->>>>>>> 5628a643df5b8082fd2631f91e41ff253bb7b22a
   <string name="network_toast">Uh-oh! This app requires an internet connection</string>
 </resources>

@@ -16,11 +16,7 @@
       android:id="@+id/fab"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-<<<<<<< HEAD
       android:layout_gravity="bottom|end"
-=======
-      android:layout_gravity="bottom|right"
->>>>>>> 5628a643df5b8082fd2631f91e41ff253bb7b22a
       android:layout_margin="16dp"
       android:src="@drawable/ic_add_white_24dp"
       fab:fab_colorNormal="@color/material_blue_500"
