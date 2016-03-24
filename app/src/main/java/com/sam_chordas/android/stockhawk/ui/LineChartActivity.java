@@ -64,7 +64,7 @@ public class LineChartActivity extends Activity {
             }
         };
 
-        symbol=getIntent().getStringExtra("Symbol");
+        symbol=getIntent().getStringExtra("symbol");
         try {
             fetchData(urlBuild(symbol));
         } catch (IOException e) {
