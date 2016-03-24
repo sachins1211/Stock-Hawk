@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/StockHawk-student_release.iml" filepath="$PROJECT_DIR$/StockHawk-student_release.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/StockHawk.iml" filepath="$PROJECT_DIR$/StockHawk.iml" />
+>>>>>>> 5628a643df5b8082fd2631f91e41ff253bb7b22a
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

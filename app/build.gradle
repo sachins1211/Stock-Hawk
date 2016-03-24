@@ -1,9 +1,16 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
+<<<<<<< HEAD
 apply plugin: 'realm-android'
 android {
   compileSdkVersion 23
   buildToolsVersion "23.0.2"
+=======
+
+android {
+  compileSdkVersion 23
+  buildToolsVersion "23.0.1"
+>>>>>>> 5628a643df5b8082fd2631f91e41ff253bb7b22a
 
   defaultConfig {
     applicationId "com.example.sam_chordas.stockhawk"
@@ -26,16 +33,23 @@ repositories {
 
 dependencies {
 
+<<<<<<< HEAD
   compile 'com.github.PhilJay:MPAndroidChart:v2.2.3'
   compile 'com.mcxiaoke.volley:library:1.0.19'
+=======
+>>>>>>> 5628a643df5b8082fd2631f91e41ff253bb7b22a
   compile 'com.google.android.gms:play-services-gcm:8.4.0'
   compile 'com.squareup.okhttp:okhttp:2.5.0'
   apt 'net.simonvt.schematic:schematic-compiler:0.6.3'
   compile 'net.simonvt.schematic:schematic:0.6.3'
   compile 'com.melnykov:floatingactionbutton:1.2.0'
   compile 'com.android.support:design:23.1.1'
+<<<<<<< HEAD
   compile 'com.diogobernardino:williamchart:2.1'
   compile('com.afollestad.material-dialogs:core:0.8.4.2@aar') {
+=======
+  compile('com.github.afollestad.material-dialogs:core:0.8.5.7@aar') {
+>>>>>>> 5628a643df5b8082fd2631f91e41ff253bb7b22a
     transitive = true
   }
 }

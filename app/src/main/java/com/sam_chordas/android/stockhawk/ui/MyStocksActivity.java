@@ -86,11 +86,14 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
               @Override public void onItemClick(View v, int position) {
                 //TODO:
                 // do something on item click
+<<<<<<< HEAD
                   Intent intent=new Intent(mContext,LineChartActivity.class);
                   mCursor.moveToPosition(position);
                   intent.putExtra("symbol",mCursor.getString(mCursor.getColumnIndex("symbol")));
                   startActivity(intent);
 
+=======
+>>>>>>> 5628a643df5b8082fd2631f91e41ff253bb7b22a
               }
             }));
     recyclerView.setAdapter(mCursorAdapter);
@@ -140,10 +143,15 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
 
     mTitle = getTitle();
     if (isConnected){
+<<<<<<< HEAD
      long period = 3600L;
       long flex = 10L;
     //  long period = 5L;
      // long flex = 3L;
+=======
+      long period = 3600L;
+      long flex = 10L;
+>>>>>>> 5628a643df5b8082fd2631f91e41ff253bb7b22a
       String periodicTag = "periodic";
 
       // create a periodic task to pull stocks once every hour after the app has been opened. This

@@ -1,6 +1,9 @@
 package com.sam_chordas.android.stockhawk.rest;
 
+<<<<<<< HEAD
 import android.annotation.TargetApi;
+=======
+>>>>>>> 5628a643df5b8082fd2631f91e41ff253bb7b22a
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -29,11 +32,17 @@ public class QuoteCursorAdapter extends CursorRecyclerViewAdapter<QuoteCursorAda
 
   private static Context mContext;
   private static Typeface robotoLight;
+<<<<<<< HEAD
   //private final OnStartDragListener mDragListener;
   private boolean isPercent;
   public QuoteCursorAdapter(Context context, Cursor cursor){
     super(context, cursor);
     //mDragListener = dragListener;
+=======
+  private boolean isPercent;
+  public QuoteCursorAdapter(Context context, Cursor cursor){
+    super(context, cursor);
+>>>>>>> 5628a643df5b8082fd2631f91e41ff253bb7b22a
     mContext = context;
   }
 
@@ -46,7 +55,10 @@ public class QuoteCursorAdapter extends CursorRecyclerViewAdapter<QuoteCursorAda
     return vh;
   }
 
+<<<<<<< HEAD
   @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+=======
+>>>>>>> 5628a643df5b8082fd2631f91e41ff253bb7b22a
   @Override
   public void onBindViewHolder(final ViewHolder viewHolder, final Cursor cursor){
     viewHolder.symbol.setText(cursor.getString(cursor.getColumnIndex("symbol")));

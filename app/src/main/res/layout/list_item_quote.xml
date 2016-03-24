@@ -5,31 +5,48 @@
     android:layout_height="72dp"
     android:gravity="center_vertical"
     android:orientation="horizontal"
+<<<<<<< HEAD
     android:paddingStart="16dp"
     android:paddingEnd="16dp"
 
+=======
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+>>>>>>> 5628a643df5b8082fd2631f91e41ff253bb7b22a
     >
   <TextView
       android:id="@+id/stock_symbol"
       style="@style/StockSymbolTextStyle"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+<<<<<<< HEAD
       android:gravity="start|center_vertical"
+=======
+      android:gravity="left|center_vertical"
+>>>>>>> 5628a643df5b8082fd2631f91e41ff253bb7b22a
       tools:text="GOOG"
       />
   <LinearLayout
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_weight="1"
+<<<<<<< HEAD
       android:gravity="end"
+=======
+      android:gravity="right"
+>>>>>>> 5628a643df5b8082fd2631f91e41ff253bb7b22a
       >
     <TextView
         android:id="@+id/bid_price"
         style="@style/BidPriceTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:paddingEnd="10sp"
         android:paddingStart="10sp"
+=======
+        android:paddingRight="10sp"
+>>>>>>> 5628a643df5b8082fd2631f91e41ff253bb7b22a
         tools:text="1000.00"
         />
     <TextView
@@ -38,10 +55,18 @@
         style="@style/PercentChangeTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:paddingStart="3dp"
         android:paddingEnd="3dp"
         tools:text="100%"
         />
   </LinearLayout>
 
+=======
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        tools:text="100%"
+        />
+  </LinearLayout>
+>>>>>>> 5628a643df5b8082fd2631f91e41ff253bb7b22a
 </LinearLayout>
