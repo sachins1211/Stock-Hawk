@@ -5,12 +5,11 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.realm.implementation.RealmLineData;
 import com.github.mikephil.charting.data.realm.implementation.RealmLineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
@@ -42,11 +41,12 @@ public class LineChartActivity extends Activity {
     String pastDate;
     LineChart chart;
     int lastId;
-    //ArrayList<String> xVals;
-    //ArrayList<Entry> yVals;
+    RealmLineData realmLineData;
     Realm realm;
     String symbol;
     RealmChangeListener realmChangeListener;
+    RealmResults<HistoricalData> results;
+    RealmLineDataSet<HistoricalData> historicalDataRealmLineDataSet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +59,8 @@ public class LineChartActivity extends Activity {
         realmChangeListener=new RealmChangeListener() {
             @Override
             public void onChange() {
-                chart.invalidate();
+                Log.d("TEST", "onChange()");
+                setData();
             }
         };
 
@@ -146,14 +147,14 @@ public class LineChartActivity extends Activity {
     }
     private void setData() {
         //realm.beginTransaction();
-        RealmResults<HistoricalData> results = realm.where(HistoricalData.class).equalTo("stock",symbol).findAll();
+        results = realm.where(HistoricalData.class).equalTo("stock",symbol).findAll();
         results.addChangeListener(realmChangeListener);
         //Toast.makeText(mContext, results.size() + "", Toast.LENGTH_SHORT).show();
-        RealmLineDataSet<HistoricalData> historicalDataRealmLineDataSet=new RealmLineDataSet<HistoricalData>(results,"value","id");
+        historicalDataRealmLineDataSet=new RealmLineDataSet<HistoricalData>(results,"value","id");
         // create a dataset and give it a type
         //LineDataSet set1 = new LineDataSet(yVals, "DataSet 1");
-         historicalDataRealmLineDataSet.setFillAlpha(110);
-        // set1.setFillColor(Color.RED);
+        historicalDataRealmLineDataSet.setFillAlpha(110);
+        historicalDataRealmLineDataSet.setFillColor(Color.RED);
 
         // set the line to be drawn like this "- - - - - -"
         historicalDataRealmLineDataSet.enableDashedLine(10f, 5f, 0f);
@@ -170,13 +171,14 @@ public class LineChartActivity extends Activity {
 
         ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
         dataSets.add(historicalDataRealmLineDataSet); // add the datasets
-
         // create a data object with the datasets
         //LineData data = new LineData(xVals, dataSets);
-        RealmLineData realmBarData=new RealmLineData(results,"date",dataSets);
+        realmLineData=new RealmLineData(results,"date",dataSets);
         // set data
-        chart.setData(realmBarData);
-        chart.invalidate();
+        chart.setAutoScaleMinMaxEnabled(true);
+        chart.getLegend().setEnabled(false);
+        chart.setData(realmLineData);
+        chart.animateXY(3000, 1000, Easing.EasingOption.Linear, Easing.EasingOption.Linear);
     }
 
     public void getDates() {

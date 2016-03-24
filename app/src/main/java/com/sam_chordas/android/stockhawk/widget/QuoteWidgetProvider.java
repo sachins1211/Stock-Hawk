@@ -32,7 +32,7 @@ import java.util.Calendar;
 public class QuoteWidgetProvider extends AppWidgetProvider {
 
     public static final String SYNC_CLICKED= "com.sam_chordas.android.stockhawk.SYNC_CLICKED";
-    private static final String TAG = "Fucking Widget:|  ";
+    private static final String TAG = "Widget: ";
 
     public static final String EXTRA_QUOTE = "com.sam_chordas.android.stockhawk.widget.quote";
 
