@@ -4,7 +4,7 @@
              android:id="@+id/widget_list_item"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:background="@drawable/touch_selector_dark"
+             android:background="@color/material_gray_900"
              android:minHeight="?android:attr/listPreferredItemHeight"
              android:padding="@dimen/widget_margin">
 
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|end"
         android:layout_margin="3dp"
-        android:background="@drawable/percent_change_pill"
+
         android:paddingStart="3dp"
         android:paddingEnd="3dp"
         tools:text="100%"
