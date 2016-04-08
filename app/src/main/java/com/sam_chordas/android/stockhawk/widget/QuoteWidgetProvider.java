@@ -48,6 +48,8 @@ public class QuoteWidgetProvider extends AppWidgetProvider {
                 refreshIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         views.setOnClickPendingIntent(R.id.update, refreshPendingIntent);
 
+        views.setEmptyView(R.id.widget_list, R.id.empty_view);
+
         final Intent openAppIntent = new Intent(context, LineChartActivity.class);
         PendingIntent openAppPendingIntent = TaskStackBuilder.create(context)
                 .addNextIntentWithParentStack(openAppIntent)

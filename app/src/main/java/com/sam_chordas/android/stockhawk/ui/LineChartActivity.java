@@ -73,6 +73,8 @@ public class LineChartActivity extends Activity {
         setData();
     }
 
+
+
     String urlBuild(String stockInput){
         getDates();
         StringBuilder urlStringBuilder = new StringBuilder();
@@ -154,7 +156,8 @@ public class LineChartActivity extends Activity {
         // create a dataset and give it a type
         //LineDataSet set1 = new LineDataSet(yVals, "DataSet 1");
         historicalDataRealmLineDataSet.setFillAlpha(110);
-        historicalDataRealmLineDataSet.setFillColor(Color.RED);
+       // historicalDataRealmLineDataSet.setFillColor(Color.RED);
+       historicalDataRealmLineDataSet.setFillColor(Color.BLUE);
 
         // set the line to be drawn like this "- - - - - -"
         historicalDataRealmLineDataSet.enableDashedLine(10f, 5f, 0f);
@@ -162,6 +165,7 @@ public class LineChartActivity extends Activity {
         historicalDataRealmLineDataSet.setColor(Color.BLACK);
         historicalDataRealmLineDataSet.setCircleColor(Color.BLACK);
         historicalDataRealmLineDataSet.setLineWidth(1f);
+        historicalDataRealmLineDataSet.setCircleSize(2.5f);
         //historicalDataRealmLineDataSet.setCircleRadius(3f);
         historicalDataRealmLineDataSet.setDrawCircleHole(false);
         historicalDataRealmLineDataSet.setValueTextSize(9f);
@@ -197,10 +201,13 @@ public class LineChartActivity extends Activity {
             cal.add(Calendar.YEAR,-1);
             pastDate=dateFormat.format(cal.getTime());}
     }
+   /*
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        realm.removeAllChangeListeners();
-        realm.close();
+      //  realm.removeAllChangeListeners();
+      //  realm.close();
     }
+    */
+
 }
