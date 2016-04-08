@@ -18,11 +18,13 @@
         android:gravity="start|center_vertical"
         tools:text="GOOG"
         android:layout_gravity="center_vertical" />
+
+
     <TextView
         android:id="@+id/bid_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="214"
+        tools:text="214"
         android:textSize="20sp"
         android:layout_gravity="center" />
 

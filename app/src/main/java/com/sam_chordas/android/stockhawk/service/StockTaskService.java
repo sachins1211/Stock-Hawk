@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.google.android.gms.gcm.GcmNetworkManager;
 import com.google.android.gms.gcm.GcmTaskService;
 import com.google.android.gms.gcm.TaskParams;
+import com.sam_chordas.android.stockhawk.R;
 import com.sam_chordas.android.stockhawk.data.QuoteColumns;
 import com.sam_chordas.android.stockhawk.data.QuoteProvider;
 import com.sam_chordas.android.stockhawk.rest.Utils;
@@ -133,7 +134,7 @@ public class StockTaskService extends GcmTaskService{
                 h.post(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(mContext, "Stock not Found", Toast.LENGTH_LONG).show();
+                        Toast.makeText(mContext, R.string.stock_error , Toast.LENGTH_LONG).show();
                     }
                 });
             }

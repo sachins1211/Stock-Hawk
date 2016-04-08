@@ -28,6 +28,7 @@
             android:layout_gravity="end"
             android:drawableTop="@drawable/ic_update"
             android:background="@color/material_blue_500"
+            android:contentDescription="@string/refreshbtn"
             />
 
     </FrameLayout>
