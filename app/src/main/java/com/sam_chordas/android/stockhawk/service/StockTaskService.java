@@ -2,6 +2,7 @@ package com.sam_chordas.android.stockhawk.service;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
@@ -37,7 +38,7 @@ public class StockTaskService extends GcmTaskService{
   private Context mContext;
   private StringBuilder mStoredSymbols = new StringBuilder();
   private boolean isUpdate;
-
+  public static final String SYNC_CLICKED= "com.sam_chordas.android.stockhawk.SYNC_CLICKED";
   public StockTaskService(){}
 
   public StockTaskService(Context context){
@@ -128,7 +129,6 @@ public class StockTaskService extends GcmTaskService{
           }
             ArrayList arrayList=Utils.quoteJsonToContentVals(getResponse);
             if(arrayList==null){
-                //Toast.makeText(,"Stock not Found",Toast.LENGTH_SHORT).show();
                 Handler h = new Handler(mContext.getMainLooper());
 
                 h.post(new Runnable() {
@@ -141,6 +141,7 @@ public class StockTaskService extends GcmTaskService{
             else {
                 mContext.getContentResolver().applyBatch(QuoteProvider.AUTHORITY,
                         Utils.quoteJsonToContentVals(getResponse));
+             syncWidget();
             }
         }catch (RemoteException | OperationApplicationException e){
           Log.e(LOG_TAG, "Error applying batch insert", e);
@@ -151,6 +152,13 @@ public class StockTaskService extends GcmTaskService{
     }
 
     return result;
+  }
+  private void syncWidget() {
+    Log.d(LOG_TAG, "Sending broadcast to widget");
+    // Setting the package ensures that only components in our app will receive the broadcast
+    Intent dataUpdatedIntent = new Intent(SYNC_CLICKED)
+            .setPackage(mContext.getPackageName());
+    mContext.sendBroadcast(dataUpdatedIntent);
   }
 
 }

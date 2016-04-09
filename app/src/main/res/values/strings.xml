@@ -11,9 +11,10 @@
     <string name="input_prefill"></string>
     <string name="widget_title">Today\'s Market</string>
     <string name="stock_empty">No Stock Added</string>
-    <string name="network_toast">Uh-oh! This app requires an internet connection</string>
+    <string name="network_toast">No internet connection!</string>
     <string name="stock_present">This stock is already saved!</string>
     <string name="stock_error">Stock Symbol Not Found</string>
     <string name="add_stock">Add Stock</string>
     <string name="refreshbtn">Refresh Button</string>
+    <string name="stock_chart">Stock Chart</string>
 </resources>

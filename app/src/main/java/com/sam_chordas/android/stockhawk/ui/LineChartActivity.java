@@ -4,11 +4,16 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -17,6 +22,7 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.realm.implementation.RealmLineData;
 import com.github.mikephil.charting.data.realm.implementation.RealmLineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.sam_chordas.android.stockhawk.R;
 import com.sam_chordas.android.stockhawk.Volley_Networking.AppController;
 import com.sam_chordas.android.stockhawk.rest.HistoricalData;
@@ -52,6 +58,7 @@ public class LineChartActivity extends AppCompatActivity {
     RealmChangeListener realmChangeListener;
     RealmResults<HistoricalData> results;
     RealmLineDataSet<HistoricalData> historicalDataRealmLineDataSet;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +74,8 @@ public class LineChartActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+        progressBar=(ProgressBar)findViewById(R.id.progressBar);
 
         chart = (LineChart) findViewById(R.id.chart);
         mContext=this;
@@ -89,6 +98,7 @@ public class LineChartActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         setData();
+
     }
 
 
@@ -110,12 +120,14 @@ public class LineChartActivity extends AppCompatActivity {
         return urlStringBuilder.toString();
     }
     void fetchData(String url) throws IOException {
+        progressBar.setVisibility(View.VISIBLE);
         Log.d("TEST",url);
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(url,
                 new com.android.volley.Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("TEST",response.toString());
+                        progressBar.setVisibility(View.GONE);
                         try {
                             JSONObject jsonObject = response.getJSONObject("query");
                             if(jsonObject.getInt("count")>1){
@@ -134,6 +146,21 @@ public class LineChartActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d("TEST",error.toString());
+                        progressBar.setVisibility(View.GONE);
+                      //  Toast.makeText(mContext,mContext.getResources().getString(R.string.network_toast),Toast.LENGTH_LONG).show();
+                        Snackbar snackbar = Snackbar
+                                .make(findViewById(android.R.id.content), "No internet connection!", Snackbar.LENGTH_INDEFINITE)
+                                .setAction("RETRY", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        try {
+                                            fetchData(urlBuild(symbol));
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                });
+                        snackbar.show();
                     }
                 });
         AppController.getInstance().addToRequestQueue(jsonObjectRequest);
@@ -167,6 +194,8 @@ public class LineChartActivity extends AppCompatActivity {
     }
     private void setData() {
         //realm.beginTransaction();
+
+
         results = realm.where(HistoricalData.class).equalTo("stock",symbol).findAll();
         results.addChangeListener(realmChangeListener);
         //Toast.makeText(mContext, results.size() + "", Toast.LENGTH_SHORT).show();
@@ -197,6 +226,7 @@ public class LineChartActivity extends AppCompatActivity {
         //LineData data = new LineData(xVals, dataSets);
         realmLineData=new RealmLineData(results,"date",dataSets);
         // set data
+
         chart.setAutoScaleMinMaxEnabled(true);
         chart.getLegend().setEnabled(false);
         chart.setData(realmLineData);
@@ -209,7 +239,6 @@ public class LineChartActivity extends AppCompatActivity {
         currentDate=dateFormat.format(cal.getTime());
         RealmResults<HistoricalData> historicalData = realm.where(HistoricalData.class).equalTo("stock",symbol).findAll();
         if(historicalData.size()>0) {
-            //Toast.makeText(mContext,historicalData.size(),Toast.LENGTH_SHORT).show();
             pastDate = historicalData.last().getDate();
             lastId=historicalData.last().getId();
             Log.d("TEST",lastId+"");
@@ -219,13 +248,6 @@ public class LineChartActivity extends AppCompatActivity {
             cal.add(Calendar.YEAR,-1);
             pastDate=dateFormat.format(cal.getTime());}
     }
-   /*
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-      //  realm.removeAllChangeListeners();
-      //  realm.close();
-    }
-    */
+
 
 }

@@ -35,7 +35,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|end"
         android:layout_margin="3dp"
-
         android:paddingStart="3dp"
         android:paddingEnd="3dp"
         tools:text="100%"

@@ -17,6 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/widget_title"
+            android:textColor="@color/material_white"
             android:textSize="@dimen/md_title_textsize"
             android:layout_gravity="center"/>
 
@@ -26,7 +27,8 @@
             android:padding="10sp"
             android:id="@+id/update"
             android:layout_gravity="end"
-            android:drawableTop="@drawable/ic_update"
+            android:drawableTop="@drawable/refresh"
+
             android:background="@color/material_blue_500"
             android:contentDescription="@string/refreshbtn"
             />

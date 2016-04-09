@@ -33,7 +33,6 @@ public class QuoteWidgetProvider extends AppWidgetProvider {
 
     public static final String SYNC_CLICKED= "com.sam_chordas.android.stockhawk.SYNC_CLICKED";
     private static final String TAG = "Widget: ";
-
     public static final String EXTRA_QUOTE = "com.sam_chordas.android.stockhawk.widget.quote";
 
 
@@ -55,6 +54,7 @@ public class QuoteWidgetProvider extends AppWidgetProvider {
                 .addNextIntentWithParentStack(openAppIntent)
                 .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
         views.setPendingIntentTemplate(R.id.widget_list, openAppPendingIntent);
+
         // Set up the collection
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
@@ -86,9 +86,10 @@ public class QuoteWidgetProvider extends AppWidgetProvider {
 
 
         super.onReceive(context, intent);
-        Log.v(TAG, "Received");
+
         if (intent.getAction().equals(SYNC_CLICKED)) {
 
+            Log.v(TAG, "Received");
             final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
             final ComponentName componentName = new ComponentName(context, QuoteWidgetProvider.class);
             appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetManager.getAppWidgetIds(componentName), R.id.widget_list);
