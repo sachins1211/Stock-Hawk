@@ -25,7 +25,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.LineChartActivity"></activity>
+        <activity android:name=".ui.LineChartActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ui.MyStocksActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.MyStocksActivity" />
+        </activity>
 
         <service android:name="com.sam_chordas.android.stockhawk.service.StockTaskService"
             android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE"

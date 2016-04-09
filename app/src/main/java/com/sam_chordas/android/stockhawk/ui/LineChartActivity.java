@@ -4,7 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -34,7 +38,7 @@ import io.realm.RealmChangeListener;
 import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 
-public class LineChartActivity extends Activity {
+public class LineChartActivity extends AppCompatActivity {
 
     Context mContext;
     String currentDate;
@@ -44,6 +48,7 @@ public class LineChartActivity extends Activity {
     RealmLineData realmLineData;
     Realm realm;
     String symbol;
+    String stockName;
     RealmChangeListener realmChangeListener;
     RealmResults<HistoricalData> results;
     RealmLineDataSet<HistoricalData> historicalDataRealmLineDataSet;
@@ -52,6 +57,17 @@ public class LineChartActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_line_graph);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        myToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         chart = (LineChart) findViewById(R.id.chart);
         mContext=this;
         RealmConfiguration realmConfig = new RealmConfiguration.Builder(mContext).build();
@@ -65,6 +81,8 @@ public class LineChartActivity extends Activity {
         };
 
         symbol=getIntent().getStringExtra("symbol");
+        getSupportActionBar().setTitle(symbol);
+
         try {
             fetchData(urlBuild(symbol));
         } catch (IOException e) {

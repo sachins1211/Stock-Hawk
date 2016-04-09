@@ -35,8 +35,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/material_gray_900">
+        android:layout_weight="1">
         <ListView
             android:id="@+id/widget_list"
             android:layout_width="match_parent"
@@ -52,7 +51,8 @@
             android:text="@string/stock_empty"
             android:textColor="@android:color/white"
             android:textSize="20sp"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:background="@color/material_gray_900"/>
     </FrameLayout>
 
 </LinearLayout>

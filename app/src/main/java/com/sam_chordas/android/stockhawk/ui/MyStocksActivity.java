@@ -110,10 +110,10 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                   // in the DB and proceed accordingly
                   Cursor c = getContentResolver().query(QuoteProvider.Quotes.CONTENT_URI,
                       new String[] { QuoteColumns.SYMBOL }, QuoteColumns.SYMBOL + "= ?",
-                      new String[] { input.toString() }, null);
+                      new String[] { input.toString().toUpperCase() }, null);
                   if (c.getCount() != 0) {
                     Toast toast =
-                        Toast.makeText(MyStocksActivity.this, R.string.stock_present,
+                        Toast.makeText(MyStocksActivity.this, getString(R.string.stock_present),
                             Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.CENTER, Gravity.CENTER, 0);
                     toast.show();
@@ -212,7 +212,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
   public Loader<Cursor> onCreateLoader(int id, Bundle args){
     // This narrows the return to only the stocks that are most current.
     return new CursorLoader(this, QuoteProvider.Quotes.CONTENT_URI,
-        new String[]{ QuoteColumns._ID, QuoteColumns.SYMBOL, QuoteColumns.BIDPRICE,
+        new String[]{ QuoteColumns._ID, QuoteColumns.SYMBOL, QuoteColumns.NAME, QuoteColumns.BIDPRICE,
             QuoteColumns.PERCENT_CHANGE, QuoteColumns.CHANGE, QuoteColumns.ISUP},
         QuoteColumns.ISCURRENT + " = ?",
         new String[]{"1"},
