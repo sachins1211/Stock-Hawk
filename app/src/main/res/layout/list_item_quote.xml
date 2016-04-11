@@ -14,20 +14,23 @@
       android:layout_height="wrap_content"
       android:orientation="vertical">
     <TextView
-        android:id="@+id/stock_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="start|center_vertical"
-        tools:text="Google Inc."
-        />
-    <TextView
         android:id="@+id/stock_symbol"
         style="@style/StockSymbolTextStyle"
+        android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="start|center_vertical"
         tools:text="GOOG"
         />
+    <TextView
+        android:id="@+id/stock_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:gravity="start|center_vertical"
+        tools:text="Google Inc."
+        />
+
   </LinearLayout>
 
   <LinearLayout

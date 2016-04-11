@@ -92,8 +92,6 @@ public class WidgetDataProvider implements RemoteViewsService.RemoteViewsFactory
             view.setInt(R.id.change, "setBackgroundResource", R.drawable.percent_change_pill_green);
         }
         final Intent fillInIntent = new Intent();
-        final Bundle extras = new Bundle();
-        extras.putString(QuoteWidgetProvider.EXTRA_QUOTE, symbol);
         fillInIntent.putExtra("symbol", symbol);
         view.setOnClickFillInIntent(R.id.widget_list_item, fillInIntent);
         return view;

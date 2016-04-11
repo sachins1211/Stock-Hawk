@@ -23,6 +23,7 @@ import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import com.sam_chordas.android.stockhawk.R;
+import com.sam_chordas.android.stockhawk.service.StockIntentService;
 import com.sam_chordas.android.stockhawk.ui.LineChartActivity;
 import com.sam_chordas.android.stockhawk.ui.MyStocksActivity;
 
@@ -33,8 +34,6 @@ public class QuoteWidgetProvider extends AppWidgetProvider {
 
     public static final String SYNC_CLICKED= "com.sam_chordas.android.stockhawk.SYNC_CLICKED";
     private static final String TAG = "Widget: ";
-    public static final String EXTRA_QUOTE = "com.sam_chordas.android.stockhawk.widget.quote";
-
 
     void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                          int appWidgetId) {
@@ -95,8 +94,6 @@ public class QuoteWidgetProvider extends AppWidgetProvider {
             appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetManager.getAppWidgetIds(componentName), R.id.widget_list);
         }
     }
-
-
 
     @Override
     public void onEnabled(Context context) {

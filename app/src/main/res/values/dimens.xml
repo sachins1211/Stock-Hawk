@@ -9,4 +9,7 @@
 
   <dimen name="widget_default_height">110dp</dimen>
   <dimen name="widget_default_width">180dp</dimen>
+  <dimen name="marker_margin_top">7dp</dimen>
+  <dimen name="marker_margin_horiz">5dp</dimen>
+  <dimen name="marker_text_size">12sp</dimen>
 </resources>

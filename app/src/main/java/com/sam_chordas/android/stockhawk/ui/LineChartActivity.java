@@ -1,28 +1,27 @@
 package com.sam_chordas.android.stockhawk.ui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.realm.implementation.RealmLineData;
 import com.github.mikephil.charting.data.realm.implementation.RealmLineDataSet;
+import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.github.mikephil.charting.listener.ChartTouchListener;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.sam_chordas.android.stockhawk.R;
 import com.sam_chordas.android.stockhawk.Volley_Networking.AppController;
 import com.sam_chordas.android.stockhawk.rest.HistoricalData;
@@ -54,11 +53,11 @@ public class LineChartActivity extends AppCompatActivity {
     RealmLineData realmLineData;
     Realm realm;
     String symbol;
-    String stockName;
     RealmChangeListener realmChangeListener;
     RealmResults<HistoricalData> results;
     RealmLineDataSet<HistoricalData> historicalDataRealmLineDataSet;
     ProgressBar progressBar;
+    Toast mToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +67,7 @@ public class LineChartActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        myToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+       myToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
@@ -91,6 +90,7 @@ public class LineChartActivity extends AppCompatActivity {
 
         symbol=getIntent().getStringExtra("symbol");
         getSupportActionBar().setTitle(symbol);
+
 
         try {
             fetchData(urlBuild(symbol));
@@ -149,7 +149,7 @@ public class LineChartActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                       //  Toast.makeText(mContext,mContext.getResources().getString(R.string.network_toast),Toast.LENGTH_LONG).show();
                         Snackbar snackbar = Snackbar
-                                .make(findViewById(android.R.id.content), "No internet connection!", Snackbar.LENGTH_INDEFINITE)
+                                .make(findViewById(android.R.id.content), getString(R.string.network_toast), Snackbar.LENGTH_INDEFINITE)
                                 .setAction("RETRY", new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
@@ -183,49 +183,71 @@ public class LineChartActivity extends AppCompatActivity {
                 // begin & end transcation calls are done for you
 
             }
-        }/*, new Realm.Transaction.Callback() {
-            @Override
-            public void onSuccess() {
-                // Original Queries and Realm objects are automatically updated.
-                //puppies.size(); // => 0 because there are no more puppies (less than 2 years old)
-                dog.getAge();   // => 3 the dogs age is updated
-            }
-        }*/);
+        });
     }
     private void setData() {
         //realm.beginTransaction();
 
 
-        results = realm.where(HistoricalData.class).equalTo("stock",symbol).findAll();
+        results = realm.where(HistoricalData.class).equalTo("stock", symbol).findAll();
         results.addChangeListener(realmChangeListener);
-        //Toast.makeText(mContext, results.size() + "", Toast.LENGTH_SHORT).show();
-        historicalDataRealmLineDataSet=new RealmLineDataSet<HistoricalData>(results,"value","id");
-        // create a dataset and give it a type
-        //LineDataSet set1 = new LineDataSet(yVals, "DataSet 1");
-        historicalDataRealmLineDataSet.setFillAlpha(110);
-       // historicalDataRealmLineDataSet.setFillColor(Color.RED);
-       historicalDataRealmLineDataSet.setFillColor(Color.BLUE);
 
-        // set the line to be drawn like this "- - - - - -"
-        historicalDataRealmLineDataSet.enableDashedLine(10f, 5f, 0f);
-        historicalDataRealmLineDataSet.enableDashedHighlightLine(10f, 5f, 0f);
-        historicalDataRealmLineDataSet.setColor(Color.BLACK);
-        historicalDataRealmLineDataSet.setCircleColor(Color.BLACK);
-        historicalDataRealmLineDataSet.setLineWidth(1f);
-        historicalDataRealmLineDataSet.setCircleSize(2.5f);
-        //historicalDataRealmLineDataSet.setCircleRadius(3f);
-        historicalDataRealmLineDataSet.setDrawCircleHole(false);
-        historicalDataRealmLineDataSet.setValueTextSize(9f);
-        //Drawable drawable = ContextCompat.getDrawable(this, R.drawable.fade_red);
-        //set1.setFillDrawable(drawable);
+        historicalDataRealmLineDataSet = new RealmLineDataSet<HistoricalData>(results, "value", "id");
+        // create a dataset and give it a type
+
         historicalDataRealmLineDataSet.setDrawFilled(true);
+        historicalDataRealmLineDataSet.setFillAlpha(120);
+        historicalDataRealmLineDataSet.setFillColor(Color.BLUE);
+        historicalDataRealmLineDataSet.setCircleColor(Color.BLACK);
+        historicalDataRealmLineDataSet.setDrawCircleHole(false);
+        historicalDataRealmLineDataSet.setCircleSize(2f);
+
+
 
         ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
         dataSets.add(historicalDataRealmLineDataSet); // add the datasets
-        // create a data object with the datasets
-        //LineData data = new LineData(xVals, dataSets);
-        realmLineData=new RealmLineData(results,"date",dataSets);
-        // set data
+
+        realmLineData = new RealmLineData(results, "date", dataSets);
+
+
+
+
+        chart.setDrawGridBackground(false);
+        chart.setDescription("");
+        chart.setNoDataText("Loading chart...");
+        chart.setDrawGridBackground(true);
+
+        CustomMarkerView customMarkerView = new CustomMarkerView(mContext, R.layout.custom_marker_view);
+        chart.setMarkerView(customMarkerView);
+/*
+        chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            @Override
+            public void onValueSelected(Entry entry, int i, Highlight highlight) {
+                //display msg when value selected
+                if (entry == null)
+                    return;
+                if(mToast != null)
+                {
+                    mToast.cancel();
+                }
+                mToast=Toast.makeText(mContext,""+entry.getVal(), Toast.LENGTH_SHORT);
+                mToast.show();
+            }
+
+            @Override
+            public void onNothingSelected() {
+
+            }
+        });
+        */
+
+        XAxis xAxis = chart.getXAxis();
+        xAxis.enableGridDashedLine(8f, 5f, 0f);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        YAxis yAxis = chart.getAxisRight();
+        yAxis.setDrawLabels(false);
+        yAxis.enableGridDashedLine(8f, 5f, 0f);
+
 
         chart.setAutoScaleMinMaxEnabled(true);
         chart.getLegend().setEnabled(false);
@@ -234,14 +256,14 @@ public class LineChartActivity extends AppCompatActivity {
     }
 
     public void getDates() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+       DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Calendar cal = Calendar.getInstance();
         currentDate=dateFormat.format(cal.getTime());
         RealmResults<HistoricalData> historicalData = realm.where(HistoricalData.class).equalTo("stock",symbol).findAll();
         if(historicalData.size()>0) {
             pastDate = historicalData.last().getDate();
             lastId=historicalData.last().getId();
-            Log.d("TEST",lastId+"");
+            Log.d("TEST",lastId+"  "+pastDate);
         }
         else{
             lastId=-1;
