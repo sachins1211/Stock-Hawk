@@ -150,7 +150,7 @@ public class LineChartActivity extends AppCompatActivity {
                       //  Toast.makeText(mContext,mContext.getResources().getString(R.string.network_toast),Toast.LENGTH_LONG).show();
                         Snackbar snackbar = Snackbar
                                 .make(findViewById(android.R.id.content), getString(R.string.network_toast), Snackbar.LENGTH_INDEFINITE)
-                                .setAction("RETRY", new View.OnClickListener() {
+                                .setAction(getString(R.string.retry), new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
                                         try {

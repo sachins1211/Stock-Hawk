@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">الأسهم هوك</string>
+    <string name="action_settings">إعدادات</string>
+    <string name="action_change_units">وحدات التغيير</string>
+    <string name="symbol_search">رمز البحث</string>
+    <string name="content_test">البحث عن رمز السهم</string>
+    <string name="widget_title">السوق اليوم</string>
+    <string name="stock_empty">الأسهم لا تضاف</string>
+    <string name="network_toast">أي اتصال بالإنترنت!</string>
+    <string name="stock_present">يتم حفظ هذا المخزون فعلا!</string>
+    <string name="stock_error">لم يتم العثور على رمز السهم</string>
+    <string name="add_stock">إضافة الأسهم</string>
+    <string name="refreshbtn">زر التحديث</string>
+    <string name="stock_chart">مخطط الأسهم</string>
+    <string name="retry">إعادة المحاولة</string>
+</resources>

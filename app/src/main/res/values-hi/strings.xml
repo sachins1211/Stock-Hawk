@@ -1,0 +1,17 @@
+<resources>
+
+    <string name="app_name">स्टॉक हॉक</string>
+    <string name="action_settings">सेटिंग्स</string>
+    <string name="action_change_units">इकाइयों बदलें</string>
+    <string name="symbol_search">प्रतीक खोज</string>
+    <string name="content_test">शेयर प्रतीक की खोज</string>
+    <string name="widget_title">आज बाजार</string>
+    <string name="stock_empty">कोई शेयर मौजूद नहीं</string>
+    <string name="network_toast">कोई इंटरनेट कनेक्शन नहीं!</string>
+    <string name="stock_present">यह शेयर पहले से ही मौजूद है!</string>
+    <string name="stock_error">स्टॉक प्रतीक नहीं मिला</string>
+    <string name="add_stock">शेयर जोड़े</string>
+    <string name="refreshbtn">रीफ़्रेश बटन</string>
+    <string name="stock_chart">स्टॉक चार्ट</string>
+    <string name="retry">पुनः प्रयास करें</string>
+</resources>
