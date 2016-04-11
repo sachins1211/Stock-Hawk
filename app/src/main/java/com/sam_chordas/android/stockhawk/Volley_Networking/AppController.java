@@ -1,8 +1,5 @@
 package com.sam_chordas.android.stockhawk.Volley_Networking;
 
-/**
- * Created by ajitesh on 30/11/15.
- */
 import android.app.Application;
 import android.text.TextUtils;
 

@@ -2,9 +2,6 @@ package com.sam_chordas.android.stockhawk.rest;
 
 import java.io.Serializable;
 
-/**
- * Created by ajitesh on 8/3/16.
- */
 public class Stock implements Serializable{
     private String name;
     private String change;

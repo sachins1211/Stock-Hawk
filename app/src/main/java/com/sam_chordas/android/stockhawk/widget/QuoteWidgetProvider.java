@@ -2,33 +2,20 @@ package com.sam_chordas.android.stockhawk.widget;
 
 
 import android.annotation.TargetApi;
-import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SyncStatusObserver;
-import android.net.Uri;
 import android.os.Build;
-import android.os.IBinder;
-import android.os.SystemClock;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 import android.widget.RemoteViews;
-import android.widget.Toast;
 
 import com.sam_chordas.android.stockhawk.R;
-import com.sam_chordas.android.stockhawk.service.StockIntentService;
 import com.sam_chordas.android.stockhawk.ui.LineChartActivity;
-import com.sam_chordas.android.stockhawk.ui.MyStocksActivity;
-
-import java.util.Calendar;
-
 
 public class QuoteWidgetProvider extends AppWidgetProvider {
 

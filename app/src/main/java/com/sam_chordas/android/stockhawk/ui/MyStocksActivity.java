@@ -207,7 +207,6 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
   }
 
   public void networkToast(){
-    //Toast.makeText(mContext, getString(R.string.network_toast), Toast.LENGTH_SHORT).show();
        snackbar = Snackbar
               .make(findViewById(android.R.id.content), getString(R.string.network_toast), Snackbar.LENGTH_INDEFINITE)
               .setAction(getString(R.string.retry), new View.OnClickListener() {
@@ -248,13 +247,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    // Handle action bar item clicks here. The action bar will
-    // automatically handle clicks on the Home/Up button, so long
-    // as you specify a parent activity in AndroidManifest.xml.
     int id = item.getItemId();
-
-    //noinspection SimplifiableIfStatement
-    //noinspection SimplifiableIfStatement
     if (id == R.id.action_refresh) {
         if(!checkConnection()){
             networkToast();
@@ -268,8 +261,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     }
 
     if (id == R.id.action_change_units){
-      // this is for changing stock changes from percent value to dollar value
-      Utils.showPercent = !Utils.showPercent;
+        Utils.showPercent = !Utils.showPercent;
       this.getContentResolver().notifyChange(QuoteProvider.Quotes.CONTENT_URI, null);
     }
 

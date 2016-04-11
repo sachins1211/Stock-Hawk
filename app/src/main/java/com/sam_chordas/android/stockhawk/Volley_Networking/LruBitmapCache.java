@@ -1,13 +1,8 @@
 package com.sam_chordas.android.stockhawk.Volley_Networking;
 
-/**
- * Created by ajitesh on 30/11/15.
- */
-
-        import com.android.volley.toolbox.ImageLoader.ImageCache;
-
-        import android.graphics.Bitmap;
-        import android.support.v4.util.LruCache;
+import com.android.volley.toolbox.ImageLoader.ImageCache;
+import android.graphics.Bitmap;
+import android.support.v4.util.LruCache;
 
 public class LruBitmapCache extends LruCache<String, Bitmap> implements
         ImageCache {

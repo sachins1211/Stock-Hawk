@@ -1,21 +1,12 @@
 package com.sam_chordas.android.stockhawk.widget;
 
-/**
- * Created by sachin on 8/3/16.
- */
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Binder;
-import android.os.Bundle;
-import android.os.SystemClock;
 import android.widget.AdapterView;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
-
-
 import com.sam_chordas.android.stockhawk.R;
 import com.sam_chordas.android.stockhawk.data.QuoteColumns;
 import com.sam_chordas.android.stockhawk.data.QuoteProvider;
@@ -23,10 +14,6 @@ import com.sam_chordas.android.stockhawk.rest.Utils;
 
 import java.lang.Override;import java.lang.String;
 
-/**
- * WidgetDataProvider acts as the adapter for the collection view widget,
- * providing RemoteViews to the widget in the getViewAt method.
- */
 public class WidgetDataProvider implements RemoteViewsService.RemoteViewsFactory {
 
     private static final String TAG = "WidgetDataProvider";
@@ -75,7 +62,6 @@ public class WidgetDataProvider implements RemoteViewsService.RemoteViewsFactory
         RemoteViews view = new RemoteViews(mContext.getPackageName(),
                 R.layout.widget_collection_item);
 
-        //view.setTextViewText(android.R.id.text1, mCollection.get(position));
         view.setTextViewText(R.id.stock_symbol, data.getString(data.getColumnIndex
                 ("symbol")));
         String bidPrice = data.getString(data.getColumnIndex(QuoteColumns.BIDPRICE));
@@ -119,12 +105,6 @@ public class WidgetDataProvider implements RemoteViewsService.RemoteViewsFactory
     }
 
     private void initData() {
-        /*
-        mCollection.clear();
-        for (int i = 1; i <= 10; i++) {
-            mCollection.add("ListView item " + i);
-        }
-        */
         if (data != null) {
             data.close();
         }

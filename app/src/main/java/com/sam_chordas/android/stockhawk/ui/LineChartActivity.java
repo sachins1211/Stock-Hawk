@@ -16,12 +16,9 @@ import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.realm.implementation.RealmLineData;
 import com.github.mikephil.charting.data.realm.implementation.RealmLineDataSet;
-import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.sam_chordas.android.stockhawk.R;
 import com.sam_chordas.android.stockhawk.Volley_Networking.AppController;
 import com.sam_chordas.android.stockhawk.rest.HistoricalData;
@@ -147,7 +144,6 @@ public class LineChartActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         Log.d("TEST",error.toString());
                         progressBar.setVisibility(View.GONE);
-                      //  Toast.makeText(mContext,mContext.getResources().getString(R.string.network_toast),Toast.LENGTH_LONG).show();
                         Snackbar snackbar = Snackbar
                                 .make(findViewById(android.R.id.content), getString(R.string.network_toast), Snackbar.LENGTH_INDEFINITE)
                                 .setAction(getString(R.string.retry), new View.OnClickListener() {
