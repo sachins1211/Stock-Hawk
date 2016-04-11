@@ -73,10 +73,6 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
 
     NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
 
-    /*
-      isConnected = activeNetwork != null &&
-        activeNetwork.isConnectedOrConnecting();
-        */
     setContentView(R.layout.activity_my_stocks);
     // The intent service is for executing immediate pulls from the Yahoo API
     // GCMTaskService can only schedule tasks, they cannot execute immediately
