@@ -10,3 +10,15 @@ Built in localization support.
 <a href="https://play.google.com/store/apps/details?id=com.sachin.stockhawk">
 <img alt="Get it on Google Play" src="http://steverichey.github.io/google-play-badge-svg/img/en_get.svg" />
 </a>
+
+## Screenshots
+
+![picture alt](https://github.com/sachins1211/Stock-Hawk/blob/master/pic1.png)
+
+![picture alt](https://github.com/sachins1211/Stock-Hawk/blob/master/pic2.png)
+
+![picture alt](https://github.com/sachins1211/Stock-Hawk/blob/master/pic3.png)
+
+![picture alt](https://github.com/sachins1211/Stock-Hawk/blob/master/pic4.png)
+
+![picture alt](https://github.com/sachins1211/Stock-Hawk/blob/master/pic5.png)
